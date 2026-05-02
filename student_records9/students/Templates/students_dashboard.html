@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  body{
+    background: linear-gradient(135deg, #e0eafc,#cfdef3 );
+    min-height: 100vh;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header{
+    background:linear-gradient(135deg,#2c3e50,#34495e);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0, 0, 0.2);
+  }
+  h1{
+    font-size: 2.3rem;
+    letter-spacing: 1px;
+  }
+
+  .container{
+   max-width: 1100px;
+   margin: 40px auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+   gap:25px;
+   padding: 0 20px;
+
+  }
+  .card{
+
+    background-color: rgba(255,255, 255, 0.85);
+    box-shadow: 0 6px 15px rgba(0,0, 0,0.2);
+    border-radius: 15px;
+    text-align: center;
+    padding: 30px 20px;
+    transition: transform 0.3s  ease,box-shadow 0.3s ease;
+
+  }
+  .card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0, 0, 0.50);
+     
+  }
+  .card img{
+    width: 70px;
+    margin-bottom: 15px;
+  }
+  .card h2{
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+  }
+  .card a{
+    display: inline-block;
+    margin-top: 12px;
+    background: linear-gradient(135deg,#3498db,#2980b9);
+    padding: 12px 25px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.3s ease,transform 0.2s ease;
+    
+  }
+
+  .card a:hover{
+
+    background: linear-gradient(135deg, #2980b9,#2471a3);
+    transform: scale(1.05);
+  }
+
+</style>
+
+
+
+
+</head>
+<body>
+    <header>
+   <h1>Student Records Dashboard</h1>
+
+    </header>
+    <div class="container">
+
+        <div class="card">
+            <img src="https://img.icons8.com/?size=100&id=XKedzxVhRNPR&format=png&color=000000">
+            <h2>Add Student</h2>
+            <a href="{% url 'add_student' %}">Go</a>
+        </div>
+
+
+        <div class="card">
+            <img src="https://img.icons8.com/?size=100&id=11971&format=png&color=000000" >
+            <h2>View Records</h2>
+            <a href="{%url 'view_records'%}">Go</a>
+        </div> 
+
+         <div class="card">
+            <img src="https://img.icons8.com/?size=100&id=kDqO6kPb3xLj&format=png&color=000000">
+            <h2>Search Reecords</h2>
+            <a href="{%   url 'search_stu'  %}">Go</a>
+        </div>
+
+        <div class="card">
+            <img src="https://img.icons8.com/?size=100&id=2969&format=png&color=000000">
+            <h2>Account</h2>
+            <a href="{% url 'change_pass' %}">Go</a>
+        </div>
+
+        <div class="card">
+            <img src="https://img.icons8.com/?size=100&id=13925&format=png&color=000000">
+            <h2>Logout</h2>
+            <a href="">Go</a>
+        </div>
+         
+    </div>
+
+    
+</body>
+</html>

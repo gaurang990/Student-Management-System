@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta charset="UTF-8" />
+    <title>Student Record</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f6f9;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: linear-gradient(90deg, #2c7a7b, #319795);
+        padding: 15px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Logo */
+      .logo {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      /* Nav links */
+      .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+      }
+      .nav-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.3s;
+        padding: 5px 0;
+      }
+
+      /* Hover effect */
+      .nav-links li a:hover {
+        color: #ffd166;
+        border-bottom: 2px solid #ffd166;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 80px 60px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: #555;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="#" class="logo">🎓 Student Record</a>
+
+      <ul class="nav-links">
+        <li>
+          <a href="{% url 'home'%}"
+            ><i class="fa-solid fa-house-chimney"></i>Home</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'about'%}"><i class="fa-solid fa-circle-info"></i>About</a>
+        </li>
+        <li>
+          <a href="{% url 'contact'%}"
+            ><i class="fa-solid fa-address-book"></i>Contact</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'login'%}"><i class="fa-solid fa-circle-user"></i>LogIn</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <h1>Welcome Home</h1>
+      <p>This is a Student Record Site.</p>
+    </section>
+  </body>
+</html>

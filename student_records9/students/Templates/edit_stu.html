@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    body{
+        background-color: #f4f6f8;
+        color: #333;
+    }
+    .form-container{
+
+        max-width: 600px;
+        margin: 30px auto;
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 8px rgba(0,0,0, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .form-box{
+        flex: 1;
+    }
+    h2{
+        text-align: center;
+        margin-bottom: 20px;
+        
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    label{
+        align-self: flex-start;
+        margin: 10px 0 5px 10%;
+        font-weight: 600;
+    }
+    .input,select{
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border:1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+       position: relative;
+       left: 50px;
+    }
+
+    .btn{
+        padding: 10px 20px;
+        border-radius: 8px;
+        background-color: #3498db;
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+        width: 80%;
+        position: relative;
+        left: 50px;
+        top: 10px;
+
+    }
+
+
+
+</style>
+
+
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Edit Student</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label>Full Name</label>
+                <input type="text" name="sname" required class="input" value="{{data.name}}">
+
+               <label>Email</label>
+                <input type="email" name="email" required class="input" value="{{data.email}}">
+
+                <label>city</label>
+                <input type="text" name="city" required class="input" value="{{data.city}}">
+
+                <label>college</label>
+                <input type="text" name="college" required class="input" value="{{data.college}}">
+
+                <label>Join date</label>
+                <input type="date" name="joining_date" required class="input" value="{{data.joining_date|date:'Y-m-d'}}">
+
+                <label>Total fee</label>
+                <input type="number" name="total_fee" required class="input" value="{{data.total_fee}}">
+
+
+                <label>Paid  fee</label>
+                <input type="number" name="paid_fee" required class="input" value="{{data.paid_fee}}">
+
+                <label>Left fee</label>
+                <input type="number" name="left_fee" required class="input" value="{{data.left_fee}}">
+
+                <label>Phone Number</label>
+                <input type="text" name="number" required class="input" value="{{data.number}}">
+
+                <label>Technology</label>
+                {% if data.technology == "Python" %}
+                <select name="technology">
+
+                    <option value="Python" selected>Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net">Asp.net</option>
+                </select>
+                {% endif %}
+
+
+                {% if data.technology == "Php" %}
+                <select name="technology">
+
+                    <option value="Python" >Python</option>
+                    <option value="Php" selected>Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net">Asp.net</option>
+                </select>
+                {% endif %}
+
+                {% if data.technology == "Mern" %}
+                <select name="technology">
+
+                    <option value="Python">Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern" selected>Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net">Asp.net</option>
+                </select>
+                {% endif %}
+
+                {% if data.technology == "Java" %}
+                <select name="technology">
+
+                    <option value="Python" >Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java" selected>Java</option>
+                    <option value="asp.Net">Asp.net</option>
+              
+                </select>
+                {% endif %}
+
+              {% if data.technology == "asp.Net" %}
+                <select name="technology">
+
+                    <option value="Python" >Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net" selected>Asp.net</option>
+                </select>
+                {% endif %}
+
+
+
+                <input type="submit" class="btn" value="Update">
+
+            </form>
+
+
+        </div>
+
+
+
+    </div>
+ {% if error == "no" %}
+ <script>
+    alert("Records Updated Successfully")
+    window.location=("{% url 'view_records' %}")
+
+    </script>
+
+
+ {% endif %}
+
+ {%  if error == "yes" %}
+<script>
+ alert("Something went wrong")
+ </script>
+
+ {% endif %}
+  <script>
+        
+        const totalFee = document.querySelector('input[name="total_fee"]');
+        const paidFee = document.querySelector('input[name="paid_fee"]');
+        const leftFee = document.querySelector('input[name="left_fee"]');
+
+        function updateLeftFee(){
+            const total = parseFloat(totalFee.value) || 0;
+            const paid = parseFloat(paidFee.value) || 0;
+            leftFee.value = total - paid;
+        }
+
+        totalFee.addEventListener('input', updateLeftFee);
+        paidFee.addEventListener('input', updateLeftFee);
+    </script>
+
+
+</body>
+</html>

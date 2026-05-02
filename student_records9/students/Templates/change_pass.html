@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  body{
+    background: linear-gradient(135deg, #e0eafc,#cfdef3);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+span{
+    background: linear-gradient(135deg, #2c3e50,#34495e);
+    color: #fff;
+    padding: 25px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+h1{
+    letter-spacing: 1px;
+    font-size: 2.3rem;
+}
+
+.form-container{
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    top: 20px;
+}
+
+.form-container h2{
+    margin-bottom: 20px;
+    color: #2c3e50;
+    letter-spacing: 0.5px;
+}
+form{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+ input{
+
+ padding: 12px 15px;
+ border: 1px solid #3498db;
+ border-radius: 8px;
+ width: 70%;
+ outline: none;
+ font-size: 16px;
+}
+button{
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+
+}
+ h2{
+    margin-bottom: 20px;
+    color: #2c3e50;
+    letter-spacing: 0.5px;
+}
+form{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+ input{
+
+ padding: 12px 15px;
+ border: 1px solid #3498db;
+ border-radius: 8px;
+ width: 70%;
+ outline: none;
+ font-size: 16px;
+}
+button{
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+
+}
+.form-group{
+    margin-bottom: 20px;
+    text-align: left;
+}
+label{
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <span>
+        <h1>Change Password</h1>
+    </span>
+
+    <div class="form-container">
+        <h2>Update Password</h2>
+        <form method="post" action="{% url 'update_pass'  %}">
+            {% csrf_token %}
+
+         <div class="form-group">
+            <label>Current Password </label>
+            <input type="password" name="cp" required placeholder=" Enter Old Password">
+         </div>
+
+         <div class="form-group">
+            <label>New Password </label>
+            <input type="password" name="np" required placeholder="Enter New Password" id="n_pass">
+         </div>
+
+         <div class="form-group">
+            <label>Confirm Password </label>
+            
+            <input type="password" id="conp" required placeholder="Enter Confirm Password" oninput="change_pass()">
+            <b id="set" style="display: block; color: red;"></b>
+         </div>
+         
+         <button type="submit">Change Password</button>
+
+
+        </form>
+
+
+
+
+    </div>
+
+
+    <script>
+        function change_pass(){
+           let n=document.getElementById('n_pass').value
+           let c=document.getElementById('conp').value
+           if(n!=c){
+            document.getElementById('set').innerText="Password and confirm Password does not Match"
+
+           }else{
+             document.getElementById('set').innerText=" "
+            
+           }
+
+        }
+
+
+
+    </script>
+    
+</body>
+</html>

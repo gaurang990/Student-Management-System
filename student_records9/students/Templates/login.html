@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+
+
+<!DOCTYPE html>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>login</title>
+
+	<style>
+      body{
+      	background-image: url(https://t3.ftcdn.net/jpg/02/92/90/56/360_F_292905667_yFUJNJPngYeRNlrRL4hApHWxuYyRY4kN.jpg);
+      	background-repeat: no-repeat;
+      	background-size: cover;
+		margin: 0;
+		background-attachment: fixed;
+		
+      }	
+
+
+    .login-container{
+      width: 100%;
+    
+      height: 60px;
+      display: flex;
+      justify-content:center;
+      align-items: center;
+	  
+
+    } 
+
+    .login-box{
+    	 width: 350px;
+    padding: 40px;
+  border-radius: 15px;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.15);  /* more transparent */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Smoky border */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Soft shadow */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  color: white;
+	
+
+    } 	
+   .login-box h2{
+
+   	  text-align: center;
+   	  margin-bottom: 25px;
+   	  color: #1f2937;
+	  
+   }
+   .input-group{
+
+   	margin-bottom: 20px;
+   }
+
+   .input-group label{
+   	display: block;
+   	margin-bottom: 6px;
+   	font-size: 16px;
+   	color: #4b5563;
+   }
+
+   .input{
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      outline: none;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+
+   }
+   .input:focus{
+   	border-color: #2563eb;
+   }
+
+   .btn{
+   width: 100%;
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+   }
+   .btn:hover{
+   	background: #1d4ed8;
+   }
+
+	</style>
+
+
+	<div class="login-container">
+		
+		<div class="login-box">
+			<h2>Login</h2>
+			<form method="post">
+				{% csrf_token %}
+				<div class="input-group">
+					<label>Username</label>
+					 <input type="text" name="uname" placeholder="Username" required class="input">
+				</div>
+
+
+                 <div class="input-group">
+					<label>Password</label>
+					 <input type="Password" name="upass" placeholder="Password"  required class="input">
+				</div>
+               
+               <input type="submit" class="btn">
+
+
+        </form>
+		</div>
+
+	</div>
+
+
+
+{% if error == "no" %}
+<script>
+  alert("login successfully")
+  window.location=("{% url 'students_dashboard'  %}")
+
+	</script>
+	
+ {% endif %}
+
+ {% if error == "yes" %}
+  <script>
+   alert('invalid username or password')
+
+  </script>
+
+{% endif %}
+
+
+
+
+
+{% endblock%}

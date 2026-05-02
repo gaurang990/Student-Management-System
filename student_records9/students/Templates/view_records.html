@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+          Arial, sans-serif;
+      }
+      body {
+        background-color: #f4f6f8;
+        color: #333;
+      }
+      .table-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+        text-transform: uppercase;
+        border-bottom: 1px solid #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 12px 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #3498db;
+        color: #fff;
+        font-weight: 600;
+      }
+      tr:hover {
+        background-color: #f1f9ff;
+      }
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      
+      .edit-btn,
+      .del-btn {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        margin-bottom: 3px;
+        cursor: pointer;
+      }
+
+      .edit-btn {
+        background-color: #28a745;
+        color: #fff;
+      }
+
+      .edit-btn:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .del-btn {
+        background-color: #dc3545;
+        color: #fff;
+      }
+
+      .del-btn:hover {
+        background-color: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table-container">
+      <h2>View Students</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>College</th>
+            <th>City</th>
+            <th>Join Date</th>
+            <th>Total Fee</th>
+            <th>Paid Fee</th>
+            <th>Left Fee</th>
+            <th>Contact</th>
+            <th>Technology</th>
+            <th>Photo</th>
+            <th>Action</th>
+          </tr>
+          {% for i in data %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.college}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.joining_date}}</td>
+            <td>{{i.total_fee}}</td>
+            <td>{{i.paid_fee}}</td>
+            <td>{{i.left_fee}}</td>
+            <td>{{i.number}}</td>
+            <td>{{i.technology}}</td>
+            <td>
+              {% if i.image %}
+              <img src="{{ i.image.url }}" />
+              {% else %} No Image {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'edit_student' i.id %}" class="edit-btn"
+                ><i class="fa-solid fa-pen-to-square fa-lg">Edit</i></a
+              >
+              <a href="{% url 'del_student' i.id %}" class="del-btn"
+                ><i class="fa-solid fa-trash fa-lg">Delete</i></a
+              >
+            </td>
+          </tr>
+
+          {% endfor %}
+        </thead>
+      </table>
+    </div>
+  </body>
+</html>
